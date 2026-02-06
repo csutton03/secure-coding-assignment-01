@@ -5,8 +5,8 @@ import * as http from 'http';
 
 const dbConfig = {
     host: 'mydatabase.com',
-    user: 'admin',
-    password: 'secret123',
+    user: process.env.USER,
+    password: process.env.PASSWORD,
     database: 'mydb'
 };
 
@@ -64,3 +64,4 @@ function saveToDb(data: string) {
     sendEmail('admin@example.com', 'User Input', userInput);
 
 })();
+
