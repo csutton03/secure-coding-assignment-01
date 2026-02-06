@@ -2,6 +2,7 @@ import * as readline from 'readline';
 import * as mysql from 'mysql';
 import { exec } from 'child_process';
 import * as http from 'http';
+import DOMPurify from 'dompurify';
 
 const fs = require('fs');
 const path = require('path');
@@ -22,7 +23,8 @@ function getUserInput(): Promise<string> {
     return new Promise((resolve) => {
         rl.question('Enter your name: ', (answer) => {
             rl.close();
-            resolve(answer);
+            const cleanAnswer = DOMPurify.sanitize(answer);
+            resolve(cleanAnswer);
         });
     });
 }
@@ -79,6 +81,7 @@ function saveToDb(data: string) {
     sendEmail(process.env.EMAIL, 'User Input', userInput);
 
 })();
+
 
 
 
