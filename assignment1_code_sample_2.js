@@ -61,7 +61,8 @@ function saveToDb(data: string) {
     const userInput = await getUserInput();
     const data = await getData();
     saveToDb(data);
-    sendEmail('admin@example.com', 'User Input', userInput);
+    sendEmail(process.env.EMAIL, 'User Input', userInput);
 
 })();
+
 
